@@ -1,11 +1,33 @@
 from django.shortcuts import render
 from django.conf import settings
-
+from django.shortcuts import redirect
+from django.contrib import messages
+from django.core.mail import send_mail
 
 def contact_view(request):
     if request.method == "POST":
-        # Handle form submission here
-        pass
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        name = request.POST.get("name")
+        subject = request.POST.get("subject")
+        message = request.POST.get("message")
+
+        full_message = f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}"
+
+        try:
+            send_mail(
+                subject=subject,
+                message=full_message,
+                from_email=email,  # Sender's email
+                recipient_list=["akabanelay@gmail.com"],  # List of recipients
+                fail_silently=False,
+            )
+            messages.success(request, "Your email was sent successfully!")
+        except Exception as e:
+            messages.error(request, "Failed to send email. Please try again.")
+
+        return redirect("/contact")
+    
     context = {
         "MEDIA_URL": settings.MEDIA_URL,
         "active_page": "contact",
