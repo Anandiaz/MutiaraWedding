@@ -17,8 +17,6 @@ social-auth-app-django==5.4.2
 social-auth-core==4.5.4
 sqlparse==0.5.1
 toposort==1.10
-types-python-dateutil==2.9.0.20241003
-typing_extensions==4.12.2
 tzdata==2024.1
 urllib3==2.2.3
 whitenoise==6.8.2
