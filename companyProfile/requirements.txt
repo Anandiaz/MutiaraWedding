@@ -1,5 +1,5 @@
 asgiref==3.8.1
-Django==5.0.8
+Django==4.2.1
 django-bootstrap5==24.2
 django-browser-reload==1.17.0
 django-tailwind==3.8.0
