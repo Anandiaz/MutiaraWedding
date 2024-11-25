@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-5+lg5%tuna@t-)-1b_24r8rbmxlbv)hk0jt@hox4n)n9joml0w"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1','localhost']
 
@@ -132,8 +132,14 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_URL = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+# Directory where static files will be collected
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Additional directories to look for static files during development
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Your custom static files
+    os.path.join(BASE_DIR, 'theme/static'),  # Include your Tailwind theme static files if needed
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
